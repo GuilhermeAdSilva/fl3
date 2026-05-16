@@ -19,15 +19,12 @@ public class Gol {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_partida")
     private Partida partida;
 
     @ManyToOne
-    @JoinColumn(name = "id_jogador_gol")
     private Jogador jogadorGol;
 
     @ManyToOne
-    @JoinColumn(name = "id_jogador_assistencia")
     private Jogador jogadorAssistencia;
 
 }

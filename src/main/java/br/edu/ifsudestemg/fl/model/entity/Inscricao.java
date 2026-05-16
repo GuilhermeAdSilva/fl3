@@ -15,14 +15,11 @@ public class Inscricao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_equipe")
     private Equipe equipe;
 
     @ManyToOne
-    @JoinColumn(name = "id_torneio")
     private Torneio torneio;
 }

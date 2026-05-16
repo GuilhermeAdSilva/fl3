@@ -16,18 +16,15 @@ public class Cartao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "cor")
+    @Enumerated(EnumType.STRING)
     private CorCartao cor;
 
     @ManyToOne
-    @JoinColumn(name = "id_partida")
     private Partida partida;
 
     @ManyToOne
-    @JoinColumn(name = "id_jogador")
     private Jogador jogador;
 
 }

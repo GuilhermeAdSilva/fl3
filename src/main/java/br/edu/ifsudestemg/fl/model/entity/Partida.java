@@ -19,13 +19,10 @@ public class Partida {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_torneio")
     private Torneio torneio;
 
     @ManyToOne
-    @JoinColumn(name = "id_resultado")
     private Resultado resultado;
 
-    @Column(name = "status")
     private String status;
 }

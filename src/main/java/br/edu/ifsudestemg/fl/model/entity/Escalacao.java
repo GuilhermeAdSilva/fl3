@@ -15,19 +15,15 @@ public class Escalacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_partida")
     private Partida partida;
 
     @ManyToOne
-    @JoinColumn(name = "id_equipe")
     private Equipe equipe;
 
     @ManyToOne
-    @JoinColumn(name = "id_jogador")
     private Jogador jogador;
 
 }

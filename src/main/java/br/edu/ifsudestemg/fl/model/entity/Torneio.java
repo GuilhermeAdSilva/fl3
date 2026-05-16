@@ -16,18 +16,14 @@ public class Torneio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "formato")
+    @Enumerated(EnumType.STRING)
     private FormatoTorneio formato;
 
-    @Column(name = "quantidade_equipes")
     private Integer quantidadeEquipes;
 
-    @Column(name = "descricao")
     private String descricao;
 }
