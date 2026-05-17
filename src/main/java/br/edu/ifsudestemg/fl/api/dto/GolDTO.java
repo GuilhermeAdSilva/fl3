@@ -22,7 +22,9 @@ public class GolDTO {
         ModelMapper modelMapper = new ModelMapper();
         GolDTO dto = modelMapper.map(gol, GolDTO.class);
         dto.nomeJogadorGol = gol.getJogadorGol().getNome();
-        dto.nomeJogadorAssistencia = gol.getJogadorAssistencia().getNome();
+        if (gol.getJogadorAssistencia() != null) {
+            dto.nomeJogadorAssistencia = gol.getJogadorAssistencia().getNome();
+        }
         return dto;
     }
 }

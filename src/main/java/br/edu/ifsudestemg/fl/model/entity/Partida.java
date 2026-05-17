@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.model.entity;
 
+import br.edu.ifsudestemg.fl.model.enums.StatusPartida;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,6 @@ public class Partida {
     @ManyToOne
     private Resultado resultado;
 
-    private String status;
+    @Enumerated(EnumType.STRING)
+    private StatusPartida status;
 }

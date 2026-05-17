@@ -1,6 +1,7 @@
 package br.edu.ifsudestemg.fl.api.dto;
 
 import br.edu.ifsudestemg.fl.model.entity.Partida;
+import br.edu.ifsudestemg.fl.model.enums.StatusPartida;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +17,7 @@ public class PartidaDTO {
     private Long idTorneio;
     private String nomeTorneio;
     private Long idResultado;
-    private String status;
+    private StatusPartida status;
 
     public static PartidaDTO create(Partida partida) {
         ModelMapper modelMapper = new ModelMapper();

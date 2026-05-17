@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/equipes")
 @RequiredArgsConstructor
-
 public class EquipeController {
 
     private final EquipeService service;

@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/jogadores")
 @RequiredArgsConstructor
-
 public class JogadorController {
 
     private final JogadorService service;
@@ -28,8 +27,8 @@ public class JogadorController {
 
     @GetMapping
     public ResponseEntity get() {
-        List<Jogador> jogadors = service.getJogadores();
-        return ResponseEntity.ok(jogadors.stream().map(JogadorDTO::create).collect(Collectors.toList()));
+        List<Jogador> jogadores = service.getJogadores();
+        return ResponseEntity.ok(jogadores.stream().map(JogadorDTO::create).collect(Collectors.toList()));
     }
 
     @GetMapping("/{id}")

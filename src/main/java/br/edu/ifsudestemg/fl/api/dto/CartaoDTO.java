@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 @AllArgsConstructor
 public class CartaoDTO {
 
+    private Long id;
     private CorCartao cor;
     private Long idPartida;
     private Long idJogador;
