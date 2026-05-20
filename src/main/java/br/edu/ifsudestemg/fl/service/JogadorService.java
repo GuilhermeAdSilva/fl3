@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.Equipe;
 import br.edu.ifsudestemg.fl.model.entity.Jogador;
 import br.edu.ifsudestemg.fl.model.repository.EquipeRepository;
@@ -51,6 +52,16 @@ public class JogadorService {
     }
 
     public void validar(Jogador jogador) {
-        //vou validar pela dto por bean validator
+        if (jogador.getNome() == null ||
+                jogador.getNome().trim().length() < 2 ||
+                jogador.getNome().trim().length() > 100) {
+            throw new RegraNegocioException("Nome inválido");
+        }
+
+        if (jogador.getEmail() == null ||
+                jogador.getEmail().trim().length() < 2 ||
+                jogador.getEmail().trim().length() > 100) {
+            throw new RegraNegocioException("E-mail inválido");
+        }
     }
 }

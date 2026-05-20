@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.*;
 import br.edu.ifsudestemg.fl.model.repository.EquipeRepository;
 import br.edu.ifsudestemg.fl.model.repository.EscalacaoRepository;
@@ -72,6 +73,14 @@ public class EscalacaoService {
     }
 
     public void validar(Escalacao escalacao) {
-        //vou validar pela dto por bean validator
+        if (escalacao.getEquipe() == null) {
+            throw new RegraNegocioException("Equipe da escalação inváldia");
+        }
+        if (escalacao.getJogador() == null) {
+            throw new RegraNegocioException("Jogador da escalação inválido");
+        }
+        if (escalacao.getPartida() == null) {
+            throw new RegraNegocioException("Partida da escalação inválida");
+        }
     }
 }

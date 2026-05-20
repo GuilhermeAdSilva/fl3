@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.Jogador;
 import br.edu.ifsudestemg.fl.model.entity.Partida;
 import br.edu.ifsudestemg.fl.model.entity.Cartao;
@@ -64,6 +65,14 @@ public class CartaoService {
     }
 
     public void validar(Cartao cartao) {
-        //vou validar pela dto por bean validator
+        if (cartao.getCor() == null) {
+            throw new RegraNegocioException("Cartão inválido");
+        }
+        if (cartao.getJogador() == null) {
+            throw new RegraNegocioException("Jogador que recebeu o cartão inválido");
+        }
+        if (cartao.getPartida() == null) {
+            throw new RegraNegocioException("Cartão com partida inválida");
+        }
     }
 }

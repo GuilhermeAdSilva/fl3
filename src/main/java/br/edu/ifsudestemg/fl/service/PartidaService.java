@@ -1,7 +1,9 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.*;
 import br.edu.ifsudestemg.fl.model.entity.Partida;
+import br.edu.ifsudestemg.fl.model.enums.StatusPartida;
 import br.edu.ifsudestemg.fl.model.repository.PartidaRepository;
 import br.edu.ifsudestemg.fl.model.repository.ResultadoRepository;
 import br.edu.ifsudestemg.fl.model.repository.TorneioRepository;
@@ -62,6 +64,14 @@ public class PartidaService {
     }
 
     public void validar(Partida partida) {
-        //vou validar pela dto por bean validator
+        if (partida.getTorneio() == null) {
+            throw new RegraNegocioException("Torneio inválido em partida");
+        }
+        if (partida.getStatus() == null) {
+            throw new RegraNegocioException("Status de partida inválido");
+        }
+        if (partida.getStatus() == StatusPartida.FINALIZADA && partida.getStatus() == null) {
+            throw new RegraNegocioException("Partida finalizada sem resultado");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.Equipe;
 import br.edu.ifsudestemg.fl.model.repository.EquipeRepository;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,14 @@ public class EquipeService {
     }
 
     public void validar(Equipe equipe) {
-        //vou validar pela dto por bean validator
+        if (equipe.getNome() == null ||
+                equipe.getNome().trim().length() < 2 ||
+                equipe.getNome().trim().length() > 100) {
+            throw new RegraNegocioException("Nome inválido");
+        }
+
+        if (equipe.getFotoURL().trim().length() > 255) {
+            throw new RegraNegocioException("URL inválida");
+        }
     }
 }

@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.*;
 import br.edu.ifsudestemg.fl.model.entity.Resultado;
 import br.edu.ifsudestemg.fl.model.repository.EquipeRepository;
@@ -60,6 +61,23 @@ public class ResultadoService {
     }
 
     public void validar(Resultado resultado) {
-        //vou validar pela dto por bean validator
+
+        if (resultado.getEquipeMandante() == null || resultado.getEquipeVisitante() == null) {
+            throw new RegraNegocioException("Resultado com equipe inválida");
+        }
+
+        if (resultado.getGolsMandante() == null || resultado.getGolsVisitante() == null) {
+            throw new RegraNegocioException("Gols inválidos");
+        }
+
+        if (resultado.getProrrogacao() == null) {
+            throw new RegraNegocioException("Prorrogação inválida");
+        }
+
+        if (resultado.getPenaltis() == null ||
+                (resultado.getPenaltis() == true &&
+                        (resultado.getPenaltisMandante() == null || resultado.getPenaltisVisitante() == null))) {
+            throw new RegraNegocioException("Penaltis inválidos");
+        }
     }
 }

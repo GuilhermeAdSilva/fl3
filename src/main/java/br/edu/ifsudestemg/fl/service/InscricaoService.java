@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.Equipe;
 import br.edu.ifsudestemg.fl.model.entity.Inscricao;
 import br.edu.ifsudestemg.fl.model.entity.Torneio;
@@ -63,6 +64,11 @@ public class InscricaoService {
     }
 
     public void validar(Inscricao inscricao) {
-        //vou validar pela dto por bean validator
+        if (inscricao.getEquipe() == null) {
+            throw new RegraNegocioException("Equipe inválida na inscrição");
+        }
+        if (inscricao.getTorneio() == null) {
+            throw new RegraNegocioException("Torneio inválido na inscrição");
+        }
     }
 }

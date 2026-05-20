@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.service;
 
+import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.Gol;
 import br.edu.ifsudestemg.fl.model.entity.Jogador;
 import br.edu.ifsudestemg.fl.model.entity.Partida;
@@ -71,6 +72,11 @@ public class GolService {
     }
 
     public void validar(Gol gol) {
-        //vou validar pela dto por bean validator
+        if (gol.getJogadorGol() == null) {
+            throw new RegraNegocioException("Jogador que fez o gol inválido");
+        }
+        if (gol.getPartida() == null) {
+            throw new RegraNegocioException("Gol com partida inválida");
+        }
     }
 }
