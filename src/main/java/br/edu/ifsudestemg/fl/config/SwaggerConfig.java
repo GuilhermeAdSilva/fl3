@@ -25,7 +25,7 @@ public class SwaggerConfig {
                 .useDefaultResponseMessages(false)
                 .select()
                 .apis(RequestHandlerSelectors
-                        .basePackage("br.edu.ifsudestemg.api.controller"))
+                        .basePackage("br.edu.ifsudestemg.fl.api.controller"))
                 .paths(PathSelectors.any())
                 .build()
                 .securityContexts(Arrays.asList(securityContext()))
