@@ -4,6 +4,10 @@ import br.edu.ifsudestemg.fl.api.dto.EquipeDTO;
 import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.Equipe;
 import br.edu.ifsudestemg.fl.service.EquipeService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -17,10 +21,15 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/v1/equipes")
 @RequiredArgsConstructor
+@Api
 public class EquipeController {
 
     private final EquipeService service;
 
+    @ApiOperation("Obter detalhes de todas as equipes")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Busca realizada")
+    })
     @GetMapping
     public ResponseEntity get() {
         List<Equipe> equipes = service.getEquipes();
@@ -28,6 +37,11 @@ public class EquipeController {
     }
 
     @GetMapping("/{id}")
+    @ApiOperation("Obter detalhes de uma equipe")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Equipe encontrada"),
+            @ApiResponse(code = 404, message = "Equipe não encontrada")
+    })
     public ResponseEntity get(@PathVariable("id") Long id) {
         Optional<Equipe> equipe = service.getEquipeById(id);
         if (!equipe.isPresent()) {
@@ -37,6 +51,11 @@ public class EquipeController {
     }
 
     @PostMapping
+    @ApiOperation("Salva uma nova equipe")
+    @ApiResponses({
+            @ApiResponse(code = 201, message = "Equipe salva com sucesso"),
+            @ApiResponse(code = 400, message = "Erro ao salvar a equipe")
+    })
     public ResponseEntity post(@RequestBody EquipeDTO dto) {
         try {
             Equipe equipe = converter(dto);
@@ -47,6 +66,12 @@ public class EquipeController {
         }
     }
 
+    @ApiOperation("Altera uma equipe existente")
+    @ApiResponses({
+            @ApiResponse(code = 200, message = "Equipe alterada com sucesso"),
+            @ApiResponse(code = 400, message = "Erro ao salvar a equipe"),
+            @ApiResponse(code = 404, message = "Equipe não encontrada")
+    })
     @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody EquipeDTO dto) {
         if (!service.getEquipeById(id).isPresent()) {
@@ -63,6 +88,12 @@ public class EquipeController {
     }
 
     @DeleteMapping("{id}")
+    @ApiOperation("Deleta uma equipe existente")
+    @ApiResponses({
+            @ApiResponse(code = 204, message = "Equipe deletada com sucesso"),
+            @ApiResponse(code = 404, message = "Equipe não encontrada"),
+            @ApiResponse(code = 500, message = "Erro ao deletar a equipe")
+    })
     public ResponseEntity excluir(@PathVariable("id") Long id) {
         Optional<Equipe> equipe = service.getEquipeById(id);
         if (!equipe.isPresent()) {
