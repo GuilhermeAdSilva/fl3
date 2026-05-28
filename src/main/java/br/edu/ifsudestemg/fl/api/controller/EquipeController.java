@@ -26,11 +26,11 @@ public class EquipeController {
 
     private final EquipeService service;
 
+    @GetMapping
     @ApiOperation("Obter detalhes de todas as equipes")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Busca realizada")
     })
-    @GetMapping
     public ResponseEntity get() {
         List<Equipe> equipes = service.getEquipes();
         return ResponseEntity.ok(equipes.stream().map(EquipeDTO::create).collect(Collectors.toList()));
@@ -66,13 +66,13 @@ public class EquipeController {
         }
     }
 
+    @PutMapping("{id}")
     @ApiOperation("Altera uma equipe existente")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Equipe alterada com sucesso"),
             @ApiResponse(code = 400, message = "Erro ao salvar a equipe"),
             @ApiResponse(code = 404, message = "Equipe não encontrada")
     })
-    @PutMapping("{id}")
     public ResponseEntity atualizar(@PathVariable("id") Long id, @RequestBody EquipeDTO dto) {
         if (!service.getEquipeById(id).isPresent()) {
             return new ResponseEntity("Equipe não encontrada", HttpStatus.NOT_FOUND);
