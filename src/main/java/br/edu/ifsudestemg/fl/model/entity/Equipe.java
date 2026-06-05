@@ -19,4 +19,6 @@ public class Equipe {
     private String nome;
 
     private String fotoURL;
+
+    //bct
 }
