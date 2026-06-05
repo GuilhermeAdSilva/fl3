@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "torneios")
 public class Torneio {
 
     @Id

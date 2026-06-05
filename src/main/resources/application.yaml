@@ -2,7 +2,7 @@ spring:
   application:
     name: flapi
   datasource:
-    url: jdbc:postgresql://localhost:5432/testeRef
+    url: jdbc:postgresql://localhost:5432/fl
     username: postgres
     password: 123456
     #password: admin
