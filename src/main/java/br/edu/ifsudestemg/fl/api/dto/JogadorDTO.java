@@ -21,7 +21,13 @@ public class JogadorDTO {
     public static JogadorDTO create(Jogador jogador) {
         ModelMapper modelMapper = new ModelMapper();
         JogadorDTO dto = modelMapper.map(jogador, JogadorDTO.class);
-        dto.nomeEquipe = jogador.getEquipe().getNome();
+
+        if (jogador.getEquipe() != null) {
+            dto.nomeEquipe = jogador.getEquipe().getNome();
+        } else {
+            dto.nomeEquipe = null;
+        }
+
         return dto;
     }
 }

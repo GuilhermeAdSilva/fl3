@@ -22,6 +22,7 @@ public class Jogador {
 
     private String senha; //temos que fazer um hash para armazenar
 
-    @ManyToOne
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "equipe", nullable = true)
     private Equipe equipe;
 }
