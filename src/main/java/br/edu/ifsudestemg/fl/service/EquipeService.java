@@ -45,9 +45,5 @@ public class EquipeService {
                 equipe.getNome().trim().length() > 100) {
             throw new RegraNegocioException("Nome inválido");
         }
-
-        if (equipe.getFotoURL().trim().length() > 255) {
-            throw new RegraNegocioException("URL inválida");
-        }
     }
 }

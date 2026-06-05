@@ -13,7 +13,6 @@ public class EquipeDTO {
 
     private Long id;
     private String nome;
-    private String fotoURL;
 
     public static EquipeDTO create(Equipe equipe) {
         ModelMapper modelMapper = new ModelMapper();
