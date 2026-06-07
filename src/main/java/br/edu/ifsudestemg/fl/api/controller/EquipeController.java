@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/equipes")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class EquipeController {
 
     private final EquipeService service;

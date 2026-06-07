@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/cartoes")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class CartaoController {
     
     private final CartaoService service;

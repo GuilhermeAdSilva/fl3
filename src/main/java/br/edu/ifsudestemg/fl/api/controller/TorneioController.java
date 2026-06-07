@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/torneios")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class TorneioController {
 
     private final TorneioService service;

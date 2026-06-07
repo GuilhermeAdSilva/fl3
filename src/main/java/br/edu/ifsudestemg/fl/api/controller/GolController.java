@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/gols")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class GolController {
 
     private final GolService service;

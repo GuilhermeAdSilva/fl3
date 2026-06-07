@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/resultados")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class ResultadoController {
     
     private final ResultadoService service;

@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/escalacoes")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class EscalacaoController {
     
     private final EscalacaoService service;

@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/partidas")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class PartidaController {
     
     private final PartidaService service;

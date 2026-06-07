@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/inscricoes")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class InscricaoController {
 
     private final InscricaoService service;

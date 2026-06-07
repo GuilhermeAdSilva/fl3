@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/v1/jogadores")
 @RequiredArgsConstructor
 @Api
+@CrossOrigin
 public class JogadorController {
 
     private final JogadorService service;
