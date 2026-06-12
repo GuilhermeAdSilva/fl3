@@ -21,8 +21,6 @@ public class Partida {
     @ManyToOne
     private Torneio torneio;
 
-    @ManyToOne
-    private Resultado resultado;
 
     @Enumerated(EnumType.STRING)
     private StatusPartida status;

@@ -22,6 +22,7 @@ public class ResultadoDTO {
     private Boolean penaltis;
     private Integer penaltisMandante;
     private Integer penaltisVisitante;
+    private Long idPartida;
 
     public static ResultadoDTO create(Resultado resultado) {
         ModelMapper modelMapper = new ModelMapper();

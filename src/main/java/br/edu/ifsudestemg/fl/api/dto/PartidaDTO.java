@@ -16,7 +16,6 @@ public class PartidaDTO {
     private Long id;
     private Long idTorneio;
     private String nomeTorneio;
-    private Long idResultado;
     private StatusPartida status;
 
     public static PartidaDTO create(Partida partida) {

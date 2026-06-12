@@ -19,12 +19,10 @@ public class PartidaService {
 
     private final PartidaRepository repository;
     private final TorneioRepository torneioRepository;
-    private final ResultadoRepository resultadoRepository;
 
     public PartidaService(PartidaRepository repository, TorneioRepository torneioRepository, ResultadoRepository resultadoRepository) {
         this.repository = repository;
         this.torneioRepository = torneioRepository;
-        this.resultadoRepository = resultadoRepository;
     }
 
     public List<Partida> getPartidas() {
@@ -45,14 +43,6 @@ public class PartidaService {
                             new IllegalArgumentException("Torneio não encontrado.")
                     );
             partida.setTorneio(torneio);
-        }
-        if(partida.getResultado() != null && partida.getResultado().getId() != null) {
-            Resultado resultado = resultadoRepository
-                    .findById(partida.getResultado().getId())
-                    .orElseThrow(() ->
-                            new IllegalArgumentException("Resultado não encontrado.")
-                    );
-            partida.setResultado(resultado);
         }
         return repository.save(partida);
     }

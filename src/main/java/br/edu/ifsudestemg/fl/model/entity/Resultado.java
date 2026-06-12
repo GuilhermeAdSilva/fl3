@@ -24,6 +24,9 @@ public class Resultado {
     @OneToOne
     private Equipe equipeVisitante;
 
+    @OneToOne
+    private Partida partida;
+
     private Integer golsVisitante;
 
     private Boolean prorrogacao;

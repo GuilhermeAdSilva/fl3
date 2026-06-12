@@ -4,6 +4,7 @@ import br.edu.ifsudestemg.fl.exception.RegraNegocioException;
 import br.edu.ifsudestemg.fl.model.entity.*;
 import br.edu.ifsudestemg.fl.model.entity.Resultado;
 import br.edu.ifsudestemg.fl.model.repository.EquipeRepository;
+import br.edu.ifsudestemg.fl.model.repository.PartidaRepository;
 import br.edu.ifsudestemg.fl.model.repository.JogadorRepository;
 import br.edu.ifsudestemg.fl.model.repository.ResultadoRepository;
 import org.springframework.stereotype.Service;
@@ -18,10 +19,12 @@ public class ResultadoService {
     
     private final ResultadoRepository repository;
     private final EquipeRepository equipeRepository;
+    private final PartidaRepository partidaRepository;
 
-    public ResultadoService(ResultadoRepository repository, EquipeRepository equipeRepository) {
+    public ResultadoService(ResultadoRepository repository, EquipeRepository equipeRepository, PartidaRepository partidaRepository) {
         this.repository = repository;
         this.equipeRepository = equipeRepository;
+        this.partidaRepository = partidaRepository;
     }
 
     public List<Resultado> getResultados() {
@@ -51,6 +54,14 @@ public class ResultadoService {
                     );
             resultado.setEquipeVisitante(equipeVisitante);
         }
+        if(resultado.getPartida() != null && resultado.getPartida().getId() != null) {
+            Partida partida = partidaRepository
+                    .findById(resultado.getPartida().getId())
+                    .orElseThrow(() ->
+                            new IllegalArgumentException("Partida não encontrada.")
+                    );
+            resultado.setPartida(partida);
+        }
         return repository.save(resultado);
     }
 
@@ -64,6 +75,10 @@ public class ResultadoService {
 
         if (resultado.getEquipeMandante() == null || resultado.getEquipeVisitante() == null) {
             throw new RegraNegocioException("Resultado com equipe inválida");
+        }
+
+        if (resultado.getPartida() == null) {
+            throw new RegraNegocioException("Partida inválida");
         }
 
         if (resultado.getGolsMandante() == null || resultado.getGolsVisitante() == null) {
