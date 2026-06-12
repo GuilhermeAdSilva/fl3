@@ -21,6 +21,24 @@ public class Partida {
     @ManyToOne
     private Torneio torneio;
 
+    @OneToOne
+    private Equipe equipeMandante;
+
+    private Integer golsMandante;
+
+    @OneToOne
+    private Equipe equipeVisitante;
+
+    private Integer golsVisitante;
+
+    private Boolean prorrogacao;
+
+    private Boolean penaltis;
+
+    private Integer penaltisMandante;
+
+    private Integer penaltisVisitante;
+
 
     @Enumerated(EnumType.STRING)
     private StatusPartida status;

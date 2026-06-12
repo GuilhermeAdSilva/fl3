@@ -17,11 +17,23 @@ public class PartidaDTO {
     private Long idTorneio;
     private String nomeTorneio;
     private StatusPartida status;
+    private Long idEquipeMandante;
+    private String nomeEquipeMandante;
+    private Integer golsMandante;
+    private Long idEquipeVisitante;
+    private String nomeEquipeVisitante;
+    private Integer golsVisitante;
+    private Boolean prorrogacao;
+    private Boolean penaltis;
+    private Integer penaltisMandante;
+    private Integer penaltisVisitante;
 
     public static PartidaDTO create(Partida partida) {
         ModelMapper modelMapper = new ModelMapper();
         PartidaDTO dto = modelMapper.map(partida, PartidaDTO.class);
         dto.nomeTorneio = partida.getTorneio().getNome();
+        dto.nomeEquipeMandante = partida.getEquipeMandante().getNome();
+        dto.nomeEquipeVisitante = partida.getEquipeVisitante().getNome();
         return dto;
     }
 }
