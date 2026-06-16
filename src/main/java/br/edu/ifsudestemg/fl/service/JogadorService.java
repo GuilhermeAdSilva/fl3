@@ -63,5 +63,6 @@ public class JogadorService {
                 jogador.getEmail().trim().length() > 100) {
             throw new RegraNegocioException("E-mail inválido");
         }
+
     }
 }

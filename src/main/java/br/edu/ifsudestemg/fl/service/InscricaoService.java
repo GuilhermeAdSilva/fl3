@@ -73,5 +73,13 @@ public class InscricaoService {
         if (repository.findByEquipeAndTorneio(inscricao.getEquipe(), inscricao.getTorneio()).isPresent()) {
             throw new RegraNegocioException("Time já cadastrado nessa competição");
         }
+
+        Integer limite = repository.buscarLimiteEquipes(inscricao.getTorneio().getId());
+
+        Integer inscritos = repository.quantidadeEquipesInscritasTorneio(inscricao.getTorneio().getId());
+
+        if (inscritos >= limite) {
+            throw new RegraNegocioException("Limite de times atingido nesse torneio");
+        }
     }
 }
