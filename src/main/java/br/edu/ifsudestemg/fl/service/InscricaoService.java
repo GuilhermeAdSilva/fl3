@@ -70,5 +70,8 @@ public class InscricaoService {
         if (inscricao.getTorneio() == null) {
             throw new RegraNegocioException("Torneio inválido na inscrição");
         }
+        if (repository.findByEquipeAndTorneio(inscricao.getEquipe(), inscricao.getTorneio()).isPresent()) {
+            throw new RegraNegocioException("Time já cadastrado nessa competição");
+        }
     }
 }

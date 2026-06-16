@@ -4,8 +4,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/fl
     username: postgres
-    password: 123456
-    #password: admin
+    #assword: 123456
+    password: admin
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
@@ -18,3 +18,8 @@ spring:
 
 server:
   port: 8081
+
+security:
+  jwt:
+    expiracao: 30
+    chave-assinatura: YXBpIHNpc3RlbWEgZGUgY29udHJvbGUgYWNhZGVtaWNv

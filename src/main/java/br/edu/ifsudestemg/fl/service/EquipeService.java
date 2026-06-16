@@ -45,5 +45,8 @@ public class EquipeService {
                 equipe.getNome().trim().length() > 100) {
             throw new RegraNegocioException("Nome inválido");
         }
+        if (repository.findByNome(equipe.getNome()).isPresent()) {
+            throw new RegraNegocioException("Já existe uma equipe cadastrada com esse nome");
+        }
     }
 }
