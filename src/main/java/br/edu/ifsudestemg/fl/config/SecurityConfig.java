@@ -122,7 +122,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/api/v1/jogadores/**")
                 .permitAll()
                 .antMatchers(HttpMethod.PUT,"/api/v1/jogadores/**")
-                .permitAll()
+                .hasAnyRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/api/v1/jogadores/**")
                 .hasAnyRole("ADMIN")
 
@@ -181,16 +181,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
 
-        // Origem permitida (seu Frontend)
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
 
-        // Métodos HTTP permitidos
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
 
-        // Cabeçalhos permitidos (essencial para enviar o Content-Type e o Bearer Token)
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
 
-        // Permite envio de credenciais (cookies, headers de autenticação)
         configuration.setAllowCredentials(true);
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

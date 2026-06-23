@@ -28,11 +28,20 @@ public class GolService {
     }
 
     public List<Gol> getGols() {
-        return repository.findAll();
+        List<Gol> gols = repository.findAll();
+
+        for (Gol gol : gols) {
+            String nomeTorneio = repository.pegarNomeTorneio(gol.getId());
+            gol.setNomeTorneio(nomeTorneio);
+        }
+
+        return gols;
     }
 
     public Optional<Gol> getGolById(Long id) {
-        return repository.findById(id);
+        Optional<Gol> golOpt = repository.findById(id);
+        golOpt.ifPresent(gol -> gol.setNomeTorneio(repository.pegarNomeTorneio(id)));
+        return golOpt;
     }
 
     @Transactional
@@ -62,6 +71,10 @@ public class GolService {
                     );
             gol.setJogadorAssistencia(jogadorAssistencia);
         }
+
+        Gol golSalvo = repository.save(gol);
+        golSalvo.setNomeTorneio(repository.pegarNomeTorneio(golSalvo.getId()));
+
         return repository.save(gol);
     }
 
@@ -78,5 +91,9 @@ public class GolService {
         if (gol.getPartida() == null) {
             throw new RegraNegocioException("Gol com partida inválida");
         }
+    }
+
+    public String pegarNomeTorneio(Gol gol) {
+        return repository.pegarNomeTorneio(gol.getId());
     }
 }

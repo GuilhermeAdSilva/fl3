@@ -1,5 +1,6 @@
 package br.edu.ifsudestemg.fl.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +26,8 @@ public class Gol {
 
     @ManyToOne
     private Jogador jogadorAssistencia;
+
+    @Transient
+    private String nomeTorneio;
 
 }

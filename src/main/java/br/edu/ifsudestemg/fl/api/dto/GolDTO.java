@@ -18,10 +18,14 @@ public class GolDTO {
     private Long idJogadorAssistencia;
     private String nomeJogadorAssistencia;
 
+
+    private String nomeTorneio;
+
     public static GolDTO create(Gol gol) {
         ModelMapper modelMapper = new ModelMapper();
         GolDTO dto = modelMapper.map(gol, GolDTO.class);
         dto.nomeJogadorGol = gol.getJogadorGol().getNome();
+        dto.nomeTorneio = gol.getNomeTorneio();
         if (gol.getJogadorAssistencia() != null) {
             dto.nomeJogadorAssistencia = gol.getJogadorAssistencia().getNome();
         }
